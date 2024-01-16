@@ -1,0 +1,50 @@
+# params:
+# - dvclive/params.yaml
+stages:
+  train: 
+    cmd: python train.py # in train stage this command is run
+    deps:  # dependencies of the train stage
+    - train.py
+    params:  # catching paraamters dynamically not in code  
+    - params.yaml
+    # outs:   # in outs we have the output of code 
+    #    - model.pkl
+# metrics:
+# - dvclive/metrics.json
+# plots:
+# - dvclive/plots/metrics
+
+# dvc and git : reffer pipelines as stages 
+# stages contains what to do in sequence ( as same as pipeline  )
+# in stages i add multiple stage to be followed in a sequence (in above i only have one stage but i can add more)
+# after making stages we have to run a command :- dvc repro
+# this command helps to run whole pipeline
+# by this dvc keeping a track that due to change in parameters of py file if the data changes it tracks the data
+
+
+
+# dvc.yaml and params.yaml
+# In DVC, the dvc.yaml file is used to define stages
+# , which collectively form a pipeline. Each stage in the 
+# pipeline corresponds to a specific unit of work or a task 
+# in  machine learning workflow. The params.yaml 
+# file is often used to declare and manage parameters that can be dynamically 
+# passed to your scripts or commands within the pipeline.
+# Disclamer :- we should not declare the values in our py scripts rather feed the values to these scripts 
+# dynamically from params.yaml file 
+# after making changes to your params.yaml or dvc.yaml run command :- dvc repro
+# this command rerun the whole pipeline where we have new values as changed
+# after running this command ,our code and data changes
+# data is tracked by dvc 
+# code is tracked by git
+
+
+# using experimentation tracking we can perform multiple experiments on multiple paramaters and these 
+# experiments are tracked by dvc ( by this we do experimentation tracking by performing version controls)
+
+
+
+
+# here we have staged the info and params 
+# using double click on workspace which is in dvc block we can modify and change the values of parameter and 
+# track our experiments
