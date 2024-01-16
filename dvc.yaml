@@ -1,19 +1,19 @@
-# params:
-# - dvclive/params.yaml
+params:
+- dvclive/params.yaml
 stages:
   train: 
     cmd: python train.py # in train stage this command is run
     deps:  # dependencies of the train stage
     - train.py
     params:  # catching paraamters dynamically not in code  
-    - params.yaml
+    - dvclive/params.yaml
     # outs:   # in outs we have the output of code 
     #    - model.pkl
-# metrics:
-# - dvclive/metrics.json
-# plots:
-# - dvclive/plots/metrics
-
+metrics:
+- dvclive/metrics.json
+plots:
+- dvclive/plots/metrics
+ 
 # dvc and git : reffer pipelines as stages 
 # stages contains what to do in sequence ( as same as pipeline  )
 # in stages i add multiple stage to be followed in a sequence (in above i only have one stage but i can add more)
@@ -35,7 +35,8 @@ stages:
 # after making changes to your params.yaml or dvc.yaml run command :- dvc repro
 # this command rerun the whole pipeline where we have new values as changed
 # after running this command ,our code and data changes
-# data is tracked by dvc 
+# data is tracked by dvc ( data is very important to track because for example in train test split making different splits of data with the corresponding accuracies must be tracked )
+# if we dont track the data , data is overided as we perform multiple splits
 # code is tracked by git
 
 
@@ -48,3 +49,9 @@ stages:
 # here we have staged the info and params 
 # using double click on workspace which is in dvc block we can modify and change the values of parameter and 
 # track our experiments
+
+# we have to make multiple files in a cleaner code sense
+
+
+# after multiple experiments the experiment whose accuracy is very good i can mark that as a star
+# after that double click on that experiment and create a new branch which is pushed on git 
